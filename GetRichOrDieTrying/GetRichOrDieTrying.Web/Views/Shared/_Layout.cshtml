@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
-<body>
+<body style="background-color:lightskyblue">
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -30,13 +30,35 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="Games" asp-controller="Home" asp-action="Index">Game</a></li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li><a asp-area="Admins" asp-controller="Questions" asp-action="Add">Add question</a></li>
+                    }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
     <div class="container body-content">
+        @if (TempData.ContainsKey("SuccessMessage"))
+        {
+            <br />
+            <div class="col-md-12">
+                <div class="alert alert-success col-md-6 col-md-offset-3 text-center">
+                    @TempData["SuccessMessage"]
+                </div>
+            </div>
+        }
+        else if (TempData.ContainsKey("ErrorMessage"))
+        {
+            <br />
+            <div class="col-md-12">
+                <div class="alert alert-danger col-md-6 col-md-offset-3 text-center">
+                    @TempData["ErrorMessage"]
+                </div>
+            </div>
+        }
         @RenderBody()
         <hr />
         <footer>

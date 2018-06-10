@@ -13,7 +13,7 @@
 
         public IEnumerable<QuestionGames> Questions { get; set; } = new List<QuestionGames>();
 
-        [Range(0,100000)]
+        [Range(0, 100000)]
         public int FinalSum { get; set; }
     }
 }

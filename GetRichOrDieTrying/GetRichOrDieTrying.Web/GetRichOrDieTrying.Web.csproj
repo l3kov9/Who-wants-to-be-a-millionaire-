@@ -23,4 +23,8 @@
     <ProjectReference Include="..\GetRichOrDieTrying.Services\GetRichOrDieTrying.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Games\Models\" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,47 @@
+﻿@model QuestionServiceModel
+@{
+    ViewData["Title"] = "Play";
+}
+
+<h2>Play</h2>
+
+
+<div class="row" style="background-image:url('http://11points.com/wp-content/uploads/2016/06/millionaireanswers-1600.jpg'); background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;">
+    <div class="col-md-2" style="margin-top:30px; margin-bottom:30px;">
+
+        @{
+            var sums = Enum.GetValues(typeof(QuestionDifficuly));
+
+            foreach (var sum in sums)
+            {
+                var isActive = (int)Model.QuestionDifficuly == (int)sum ? "btn-warning" : string.Empty;
+                <a class="btn btn-info form-control @isActive">@((int)sum)</a>
+            }
+        }
+    </div>
+    <div class="col-md-8">
+        <div class="text-center" style="color:wheat; margin-top:150px">
+            <h1>@((int)Model.QuestionDifficuly)</h1>
+            <h1>@Model.Text</h1>
+            <div style="margin-top:100px">
+                <div class="row">
+                    @foreach (var answer in Model.PossibleAnswers)
+                    {
+                        <div class="col-md-6" style="height:50px">
+                            <a class="btn btn-warning form-control">@answer.Text</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <img src="~/images/friend-call.png" height="120px" style="margin-top:66px" />
+        <br />
+        <img src="~/images/public-help.png" height="120px" style="margin-top:30px" />
+        <br />
+        <img src="~/images/5050.png" height="120px" style="margin-top:30px; margin-bottom:30px" />
+    </div>
+</div>
